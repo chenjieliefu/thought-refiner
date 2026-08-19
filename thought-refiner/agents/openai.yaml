@@ -1,0 +1,6 @@
+interface:
+  display_name: "想法精炼师"
+  short_description: "通过逐轮追问，把模糊想法整理成清晰、可执行的方案"
+  default_prompt: "使用 $thought-refiner，通过简单的逐轮追问帮我把这个想法想清楚。"
+policy:
+  allow_implicit_invocation: false
