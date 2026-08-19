@@ -1,3 +1,4 @@
+# User-facing metadata for the Thought Refiner skill.
 interface:
   display_name: "想法精炼师"
   short_description: "通过逐轮追问，把模糊想法整理成清晰、可执行的方案"
