@@ -1,48 +1,118 @@
-# 想法精炼师（Thought Refiner）
+**English** | [简体中文](README.zh-CN.md)
 
-把模糊想法炼成清晰、完整、可执行的方案。
+<div align="center">
+  <h1>Thought Refiner · 想法精炼师</h1>
+  <p><strong>Turn vague thinking into clear decisions—one question at a time.</strong></p>
+</div>
 
-`thought-refiner` 是一个适用于 Codex 和 ChatGPT 的独立技能。它不会急着替你做决定，而是把问题整理成决策树，通过一轮轮简单追问，找出隐藏假设、遗漏选项和前后依赖。
+<p align="center">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-8B5CF6?style=flat-square"></a>
+  <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-111827?style=flat-square">
+  <img alt="Explicit invocation" src="https://img.shields.io/badge/invocation-explicit-06B6D4?style=flat-square">
+  <img alt="Decision tree" src="https://img.shields.io/badge/method-decision--tree-F59E0B?style=flat-square">
+</p>
 
-## 它会做什么
+<p align="center">
+  Facts → decision tree → current frontier → recommendations → confirmation.
+</p>
 
-- 把复杂问题拆成有先后关系的决策
-- 每轮只问现在能回答的问题
-- 给每个问题提供清楚选项和推荐答案
-- 自动查找能查到的事实，减少用户负担
-- 使用用户的语言；出现英文时附上中文解释
-- 在所有关键问题确认前，不贸然执行方案
+---
 
-## 安装
+## What is this?
 
-在 Codex 中调用 `$skill-installer`，并让它安装这个目录：
+**Thought Refiner** is an open-source Codex Skill for turning an unclear idea, plan, design, or decision into a complete and actionable direction.
+
+Instead of jumping straight into execution, it maps the problem as a decision tree. It asks only the questions that can be answered now, explains each choice in plain language, recommends a default, and waits for confirmation before moving forward.
+
+## Why use it?
+
+| Capability | What it protects |
+|---|---|
+| 🌳 Dependency-aware questions | Later decisions are not asked before their prerequisites are settled |
+| 🔎 Fact finding first | The agent checks discoverable facts instead of turning research into user homework |
+| 🧭 Clear recommendations | Every meaningful choice comes with an opinionated default and a short reason |
+| 💬 Plain-language rounds | Questions stay compact, readable, and aligned with the user's language |
+| 🧩 Hidden-assumption checks | Unspoken constraints and missing branches become visible before execution |
+| ✅ Confirmation gate | The final direction is summarized and confirmed before any follow-up work begins |
+
+## How it works
+
+```mermaid
+flowchart LR
+    A["Idea, plan, or decision"] --> B["Check discoverable facts"]
+    B --> C["Build the decision tree"]
+    C --> D["Ask the current frontier"]
+    D --> E["User answers"]
+    E --> F{"Open branches remain?"}
+    F -- Yes --> D
+    F -- No --> G["Summarize and confirm"]
+```
+
+The **current frontier** is the set of decisions whose prerequisites are already settled. Questions that depend on an unanswered decision wait for a later round.
+
+## Quick start
+
+### Install with the Skill installer
+
+Ask Codex to install this Skill from the repository path:
 
 ```text
+Use $skill-installer to install:
 https://github.com/chenjieliefu/thought-refiner/tree/main/thought-refiner
 ```
 
-也可以下载仓库，把 `thought-refiner` 文件夹放入 Codex 的个人技能目录中。
+### Install manually
 
-## 使用
-
-在 Codex 中输入：
+Copy the `thought-refiner` folder into your personal Codex skills directory:
 
 ```text
-$thought-refiner 帮我把这个产品想法想清楚。
+$HOME/.agents/skills/thought-refiner
 ```
 
-适合用来讨论：
+Codex normally detects new skills automatically. Restart Codex if it does not appear.
 
-- 产品或创业想法
-- 项目计划
-- 技术或产品设计
-- 重要选择
-- 任何“感觉还没想透”的方案
+### Invoke
 
-## English
+Thought Refiner uses explicit invocation, so mention it directly:
 
-Thought Refiner turns vague ideas into clear, complete, actionable plans through dependency-aware rounds of simple questions.
+```text
+Use $thought-refiner to help me decide whether this product idea is worth building.
+Keep the questions simple and recommend a default for every choice.
+```
 
-## 许可
+You can also use it for a plan or design:
 
-MIT License。你可以自由使用、修改和分享。
+```text
+Use $thought-refiner to stress-test my launch plan before I start execution.
+```
+
+## Good fits
+
+- Product and startup ideas
+- Project or launch plans
+- Product and technical designs
+- Important personal or team decisions
+- Any proposal that still feels under-specified
+
+## Repository structure
+
+```text
+.
+├── README.md
+├── README.zh-CN.md
+├── LICENSE
+└── thought-refiner/
+    ├── SKILL.md
+    └── agents/
+        └── openai.yaml
+```
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  <strong>Think it through before you build it.</strong>
+</p>
