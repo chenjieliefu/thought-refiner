@@ -1,7 +1,7 @@
-**English** | [简体中文](README.zh-CN.md)
+**English** | [Simplified Chinese](README.zh-CN.md)
 
 <div align="center">
-  <h1>Thought Refiner · 想法精炼师</h1>
+  <h1>Thought Refiner</h1>
   <p><strong>Turn vague thinking into clear decisions—one question at a time.</strong></p>
 </div>
 
