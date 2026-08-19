@@ -1,7 +1,7 @@
 [English](README.md) | **简体中文**
 
 <div align="center">
-  <h1>想法精炼师 · Thought Refiner</h1>
+  <h1>Thought Refiner · 想法精炼师</h1>
   <p><strong>通过一轮轮简单追问，把模糊想法炼成清晰决定。</strong></p>
 </div>
 
